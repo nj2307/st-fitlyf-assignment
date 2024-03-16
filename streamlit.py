@@ -3,9 +3,6 @@ from scipy.stats import norm
 import numpy as np
 
 def perform_ab_test(control_visitors, control_conversions, treatment_visitors, treatment_conversions, confidence_level=95):
-    if control_visitors == 0 or treatment_visitors == 0:
-        return "Indeterminate (Zero visitors in one or both groups)"
-    
     z_alpha = norm.ppf(1 - (100 - confidence_level) / 200)  # z-score for the given confidence level
     p_control = control_conversions / control_visitors
     p_treatment = treatment_conversions / treatment_visitors
@@ -34,9 +31,19 @@ def main():
     # Perform A/B test
     ab_test_result = perform_ab_test(control_visitors, control_conversions, treatment_visitors, treatment_conversions, confidence_level)
     
-    # Display result
+    # Display result with color bar
+    if ab_test_result == "Control Group is Better":
+        color = "green"
+    elif ab_test_result == "Experiment Group is Better":
+        color = "blue"
+    else:
+        color = "red"
+
     st.subheader("A/B Test Result:")
-    st.write(ab_test_result)
+    st.markdown(f'<p style="color:{color}; font-size:20px;">{ab_test_result}</p>', unsafe_allow_html=True)
+
+    # Display image
+    st.image("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.uxdesigninstitute.com%2Fblog%2Fbenefits-of-a-b-testing%2F&psig=AOvVaw2hqoemE6c6recN4I1WudED&ust=1710703127664000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCKC9iPO_-YQDFQAAAAAdAAAAABAX", width=500)
 
 if __name__ == "__main__":
     main()
