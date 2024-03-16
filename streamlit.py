@@ -23,9 +23,6 @@ def perform_ab_test(control_visitors, control_conversions, treatment_visitors, t
 
 def main():
     st.title("A/B Test Hypothesis Testing App")
-    
-    # Display image horizontally after title
-    st.image("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.uxdesigninstitute.com%2Fblog%2Fbenefits-of-a-b-testing%2F&psig=AOvVaw2hqoemE6c6recN4I1WudED&ust=1710703127664000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCKC9iPO_-YQDFQAAAAAdAAAAABAX", width=500)
 
     # User input
     control_visitors = st.number_input("Enter number of visitors in control group:")
