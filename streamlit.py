@@ -3,6 +3,9 @@ from scipy.stats import norm
 import numpy as np
 
 def perform_ab_test(control_visitors, control_conversions, treatment_visitors, treatment_conversions, confidence_level=95):
+    if control_visitors == 0 or treatment_visitors == 0:
+        return "All input fields must be filled."
+    
     z_alpha = norm.ppf(1 - (100 - confidence_level) / 200)  # z-score for the given confidence level
     p_control = control_conversions / control_visitors
     p_treatment = treatment_conversions / treatment_visitors
